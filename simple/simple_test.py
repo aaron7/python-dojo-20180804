@@ -13,7 +13,7 @@ class TestSimple(unittest.TestCase):
             "Pickle sanitiser",
             "Face swap",
             "Space simulator",
-            "FINISH",
+            "-",
 
             "4", # Dojo website
             "8", # Minesweepers
