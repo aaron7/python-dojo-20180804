@@ -5,12 +5,11 @@ def run():
     perform_voting(options)
 
 def get_options():
-    # Gathers options from stdin and returns list
     options = []
-    print("Enter your amazing Dojo Idea (Enter 'FINISH' when done):")
+    print("Enter your amazing Dojo Ideas (Enter '-' when done):")
     while True:
         new_option = input()
-        if new_option == "FINISH":
+        if new_option == "-":
             return options
         for bad_idea in FORBIDDEN_IDEAS:
             if bad_idea in new_option:
@@ -21,26 +20,33 @@ def get_options():
 
 
 def perform_voting(options):
-    # Iterates over options and accepts votes
+    print("###############")
+    print("Voting time!!!")
+    print("###############")
+
+    # Round 1
     votes = {}
     for option in options:
-        print(option)
-        vote = int(input('Vote for this idea? '))
+        vote = int(input("Votes for '{}': ".format(option)))
         votes[option] = vote
 
+    # Round 2
     top3 = sorted(votes.items(), key=lambda kv: kv[1], reverse=True)[:3]
-    print(top3)
 
-    print('Second round of voting')
+    print("############################################################")
+    print('Second round of voting! One vote only - we will be watching.')
+    print('The top 3 are: {}'.format(", ".join([i for i, _ in top3])))
+    print("############################################################")
+
     votes = {}
     for option, _ in top3:
-        print(option)
-        vote = int(input('Vote for this idea? '))
+        vote = int(input("Final votes for '{}': ".format(option)))
         votes[option] = vote
 
-    print('Most voted idea is')
-    print(sorted(votes.items(), key=lambda kv: kv[1], reverse=True)[:1][0])
-
+    winner = sorted(votes.items(), key=lambda kv: kv[1], reverse=True)[:1][0][0]
+    print('#########################################')
+    print('The winner is ...  {}!'.format(winner))
+    print('#########################################')
 
 if __name__ == "__main__":
     run()
