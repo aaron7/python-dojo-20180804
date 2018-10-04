@@ -1,5 +1,5 @@
 
-def main():
+def run():
     options = get_options()
     perform_voting(options)
 
@@ -14,10 +14,11 @@ def get_options():
         if new_option:
             options.append(new_option)
 
-
 def perform_voting(options):
+    print(options)
     # Iterates over options and accepts votes
+    pass
 
 
 if __name__ == "__main__":
-    main()
+    run()
