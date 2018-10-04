@@ -22,7 +22,25 @@ def get_options():
 
 def perform_voting(options):
     # Iterates over options and accepts votes
-    pass
+    votes = {}
+    for option in options:
+        print(option)
+        vote = int(input('Vote for this idea? '))
+        votes[option] = vote
+    
+    top3 = sorted(votes.iteritems(), key=lambda (k,v): (v,k), reverse=True)[:3]
+    print(top3)
+
+    print('Second round of voting')
+    votes = {}    
+    for option, _ in top3:
+        print(option)
+        vote = int(input('Vote for this idea? '))
+        votes[option] = vote
+        
+    print('Most voted idea is')
+    print(sorted(votes.iteritems(), key=lambda (k,v): (v,k), reverse=True)[:1][0])
+
 
 if __name__ == "__main__":
     main()
