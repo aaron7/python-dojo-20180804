@@ -1,6 +1,6 @@
 FORBIDDEN_IDEAS = ["AI", "A.I"]
 
-def main():
+def run():
     options = get_options()
     perform_voting(options)
 
@@ -27,20 +27,20 @@ def perform_voting(options):
         print(option)
         vote = int(input('Vote for this idea? '))
         votes[option] = vote
-    
-    top3 = sorted(votes.iteritems(), key=lambda (k,v): (v,k), reverse=True)[:3]
+
+    top3 = sorted(votes.items(), key=lambda kv: kv[1], reverse=True)[:3]
     print(top3)
 
     print('Second round of voting')
-    votes = {}    
+    votes = {}
     for option, _ in top3:
         print(option)
         vote = int(input('Vote for this idea? '))
         votes[option] = vote
-        
+
     print('Most voted idea is')
-    print(sorted(votes.iteritems(), key=lambda (k,v): (v,k), reverse=True)[:1][0])
+    print(sorted(votes.items(), key=lambda kv: kv[1], reverse=True)[:1][0])
 
 
 if __name__ == "__main__":
-    main()
+    run()
