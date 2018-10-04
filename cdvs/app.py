@@ -63,6 +63,8 @@ def add_idea(window):
     global ideas
     curses.echo()
     box = window.derwin(3,32,2,25)
+    window.clear()
+    window.refresh()
     box.box()
     idea = box.getstr(1,1,32)
     box.clear()
@@ -71,24 +73,26 @@ def add_idea(window):
 
 def print_idea(window):
     global ideas
-    num = 15
-    box = window.derwin(3,32,2,25)
+    num = 1
+    box = window.derwin(2 + len(ideas) ,32,3,25)
+    box.box()
     for idea in ideas:
-        window.addstr(num, 15, idea)
+        box.addstr(num, 1, idea)
         num = num + 1
     window.refresh()
 
 def vote_idea(window):
     global votes
     num = 1
-    box = window.derwin(3,32,2,25)
+    box = window.derwin(2 + len(ideas) ,32,3,25)
+    box.box()
     for idea in ideas:
-        box.addstr(num, 15, idea)
+        box.addstr(num, 1, idea)
         num = num + 1
-    num = 15
+    num = 1
     for idea in ideas:
         curses.echo()
-        vnum = box.getstr(num, 15 + 32, 2)
+        vnum = box.getstr(num, 35, 2)
         curses.noecho()
         votes[idea] = vnum
     window.refresh()
