@@ -13,7 +13,7 @@ class Menu(object):
 
         self.position = 0
         self.items = items
-        self.items.append(('exit','exit'))
+        self.items.append(('Exit','exit'))
 
     def navigate(self, n):
         self.position += n
@@ -62,13 +62,17 @@ votes = {}
 def add_idea(window):
     global ideas
     curses.echo()
-    idea = window.getstr(15,15,32)
+    box = window.derwin(3,32,2,25)
+    box.box()
+    idea = box.getstr(1,1,32)
+    box.clear()
     ideas.append(idea)
     curses.noecho()
 
 def print_idea(window):
     global ideas
     num = 15
+    box = window.derwin(3,32,2,25)
     for idea in ideas:
         window.addstr(num, 15, idea)
         num = num + 1
@@ -76,15 +80,19 @@ def print_idea(window):
 
 def vote_idea(window):
     global votes
+    num = 1
+    box = window.derwin(3,32,2,25)
+    for idea in ideas:
+        box.addstr(num, 15, idea)
+        num = num + 1
     num = 15
     for idea in ideas:
-        window.addstr(num, 15, idea)
         curses.echo()
-        vnum = window.getstr(num, 15 + 32, 2)
+        vnum = box.getstr(num, 15 + 32, 2)
         curses.noecho()
         votes[idea] = vnum
-        num = num + 1
     window.refresh()
+    box.clear()
 
 class MyApp(object):
 
