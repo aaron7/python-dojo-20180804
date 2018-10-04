@@ -1,4 +1,3 @@
-from cdvs import main
+from cdvs.app import MyApp
 from curses import wrapper
-
-wrapper(main)
+wrapper(MyApp)
