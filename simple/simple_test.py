@@ -9,7 +9,7 @@ class TestSimple(unittest.TestCase):
         user_input = [
             "Dojo Website",
             "Minesweepers",
-            "Rocker paper scissors AI",
+            "Rocker paper scissors",
             "Pickle sanitiser",
             "Face swap",
             "Space simulator",
@@ -22,9 +22,9 @@ class TestSimple(unittest.TestCase):
             "0", # Face swap
             "9", # Space simulator
 
-            "12", # Minesweepers
+            "12", # Space simulator
             "8", # Rocker paper scissors AI
-            "2", # Space simulator
+            "2", # Minesweepers
         ]
 
         with patch('builtins.input', side_effect=user_input):
